@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
+	"net/http"
 )
 
 func main() {
@@ -32,7 +33,7 @@ func main() {
 			}
 			fmt.Printf("%d %s %s %s %d %s \n", user.Id, user.Name, user.Username, user.Mail, user.Age, user.Gender)
 		}
-		c.JSON(200, "ok")
+		c.JSON(http.StatusOK, http.StatusText(http.StatusOK))
 	})
 
 	router.Run()
