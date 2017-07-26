@@ -25,17 +25,12 @@ func main() {
 		}
 		defer rows.Close()
 		for rows.Next() {
-			var id int
-			var name string
-			var username string
-			var mail string
-			var age int
-			var gender string
-			if err := rows.Scan(&id, &name, &username, &mail, &age, &gender); err != nil {
+			var user User
+			if err := rows.Scan(&user.Id, &user.Name, &user.Username, &user.Mail, &user.Age, &user.Gender); err != nil {
 				fmt.Printf("Error in rows.Scan ", err.Error())
 				return
 			}
-			fmt.Printf("%d %s %s %s %d %s \n", id, name, username, mail, age, gender)
+			fmt.Printf("%d %s %s %s %d %s \n", user.Id, user.Name, user.Username, user.Mail, user.Age, user.Gender)
 		}
 		c.JSON(200, "ok")
 	})
